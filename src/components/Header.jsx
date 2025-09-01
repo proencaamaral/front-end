@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../contexts/UserContext";
 
 const Header = () => {
+  const { user } = useUserContext();
   return (
     <header className="shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8 ">
@@ -36,9 +38,10 @@ const Header = () => {
           </div>
         </Link>
 
-        <Link to="/login" className="flex items-center rounded-full border border-gray-300 pr-4 pl-6 shadow-md gap-2">
+        <Link to={user? "/account/profile":"/login"}
+          className="flex items-center rounded-full border border-gray-300 pr-4 pl-6 shadow-md gap-2">
 
-          
+
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -64,7 +67,13 @@ const Header = () => {
               clipRule="evenodd"
             />
           </svg>
-          <p className="max-w-20 sm:max-w-132 truncate">Luan Amaral</p>
+
+          {user ? (
+            <p className="max-w-20 sm:max-w-132 truncate">{user.name}</p>
+          ) : (
+            <></>
+          )}
+
 
         </Link>
       </div>
