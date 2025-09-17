@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 
 
-const Perks = () => {
-    const [perks, setPerks] = useState([]);
+const Perks = ({ perks, setPerks }) => {
 
     const handleClick = (target) => {
         const newPerks = target.checked
@@ -17,7 +16,7 @@ const Perks = () => {
     return (
         <div className='grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4'>
 
-            <label  htmlFor="wifi" className='flex cursor-pointer items-center rounded-xl gap-2 border border-gray-300 px-4 py-3'>
+            <label htmlFor="wifi" className='flex cursor-pointer items-center rounded-xl gap-2 border border-gray-300 px-4 py-3'>
                 <input
                     type="checkbox"
                     id="wifi"

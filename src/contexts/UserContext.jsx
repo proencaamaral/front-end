@@ -5,13 +5,14 @@ import { createContext, useContext, useEffect, useState } from "react";
 export const UserContext = createContext(null);
 
 export function useUserContext() {
-    return useContext(UserContext);
+  return useContext(UserContext);
 }
 
 
 export const UserContextProvider = ({ children }) => {
 
-      const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const axiosGet = async () => {
@@ -19,15 +20,16 @@ export const UserContextProvider = ({ children }) => {
 
 
       setUser(data);
+      setReady(true);
     }
     axiosGet();
   }, [])
 
 
-    return (
-        <UserContext.Provider value={{ user, setUser }}>
-            {children}
-        </UserContext.Provider>
-    );
+  return (
+    <UserContext.Provider value={{ user, setUser, ready }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
